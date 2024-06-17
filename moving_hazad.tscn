@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxlsgx7eo7fws"]
+
+[ext_resource type="Script" path="res://Script/MovingHazad.cs" id="1_l1jao"]
+[ext_resource type="Material" uid="uid://bvuowi7rtivi1" path="res://Material/BloodRed.tres" id="1_s16ul"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eqvr8"]
+size = Vector3(5, 3, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jcpec"]
+points = PackedVector3Array(2.44804, 1.5, 2.44756, -2.47408, -1.5, -2.47359, -2.47408, -1.5, 2.47359, 2.47408, -1.5, -2.47359, -2.44804, 1.5, -2.44756, 2.47408, -1.5, 2.47359, -2.44804, 1.5, 2.44756, 2.44804, 1.5, -2.44756)
+
+[node name="MovingHazad" type="AnimatableBody3D" groups=["Floor"]]
+script = ExtResource("1_l1jao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_s16ul")
+mesh = SubResource("BoxMesh_eqvr8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_jcpec")

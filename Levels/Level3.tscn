@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://1knrfujmenpk"]
+
+[ext_resource type="Script" path="res://Script/LandingPad.cs" id="1_3q83x"]
+[ext_resource type="Material" uid="uid://bvuowi7rtivi1" path="res://Material/BloodRed.tres" id="1_s0d1r"]
+[ext_resource type="PackedScene" uid="uid://vcaesrn7n8gg" path="res://player.tscn" id="2_lf4ou"]
+[ext_resource type="Material" uid="uid://b4xselx3j0jpb" path="res://Material/SpawnColor.tres" id="3_egqj8"]
+[ext_resource type="Material" uid="uid://6skeoyfxrnsu" path="res://Material/FinishedColor.tres" id="4_88ddy"]
+[ext_resource type="PackedScene" uid="uid://cuism2ceu0c7x" path="res://BackGround.tscn" id="6_qcqf1"]
+
+[node name="Level" type="Node3D"]
+
+[node name="Obstacle" type="CSGBox3D" parent="." groups=["Floor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 0)
+use_collision = true
+size = Vector3(5, 3, 5)
+material = ExtResource("1_s0d1r")
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0.25, 0)
+use_collision = true
+size = Vector3(3, 0.5, 3)
+material = ExtResource("3_egqj8")
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["Winner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0.25, 0)
+use_collision = true
+size = Vector3(3, 0.5, 3)
+material = ExtResource("4_88ddy")
+script = ExtResource("1_3q83x")
+Path = "res://Levels/Level4.tscn"
+
+[node name="Player" parent="." instance=ExtResource("2_lf4ou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 1.5, 0)
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="Floor" parent="." instance=ExtResource("6_qcqf1")]
